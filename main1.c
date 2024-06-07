@@ -1,6 +1,11 @@
 #include<stdio.h>
 #include "busticket.h"
 
+// Function prototypes
+int bookTickets(int bookedSeats, int totalSeats);
+int cancelTickets(int bookedSeats);
+void viewAvailableSeats(int bookedSeats, int totalSeats);
+
 int main() {
     // Variables to store the number of available seats and ticket price
     int totalSeats = 50;
