@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 // Function prototypes
 int bookTickets(int bookedSeats, int totalSeats);
 int cancelTickets(int bookedSeats);
 void viewAvailableSeats(int bookedSeats, int totalSeats);
+void clearInputBuffer();
 
 int main() {
     // Variables to store the number of available seats and ticket price
@@ -24,7 +27,12 @@ int main() {
 
         // Variable to store user's choice
         int choice;
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            // Clear the input buffer if invalid input is detected
+            clearInputBuffer();
+            printf("Invalid input. Please enter a number.\n");
+            continue;
+        }
 
         // Process user's choice
         switch (choice) {
@@ -56,7 +64,11 @@ int main() {
 int bookTickets(int bookedSeats, int totalSeats) {
     int numTickets;
     printf("Enter the number of tickets to book: ");
-    scanf("%d", &numTickets);
+    if (scanf("%d", &numTickets) != 1) {
+        clearInputBuffer();
+        printf("Invalid input. Please enter a valid number of tickets.\n");
+        return bookedSeats;
+    }
     if (bookedSeats + numTickets <= totalSeats) {
         // Choose a bus type
         int busType;
@@ -64,7 +76,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("1. Regular\n");
         printf("2. Deluxe\n");
         printf("Enter your choice: ");
-        scanf("%d", &busType);
+        if (scanf("%d", &busType) != 1) {
+            clearInputBuffer();
+            printf("Invalid input. Please enter 1 for Regular or 2 for Deluxe.\n");
+            return bookedSeats;
+        }
 
         // Choose the departure city
         int departure;
@@ -73,7 +89,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("2. Mysore\n");
         printf("3. Mangalore\n");
         printf("Enter your choice: ");
-        scanf("%d", &departure);
+        if (scanf("%d", &departure) != 1) {
+            clearInputBuffer();
+            printf("Invalid input. Please enter a valid departure city number.\n");
+            return bookedSeats;
+        }
 
         // Choose the destination city
         int destination;
@@ -82,7 +102,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("2. Mysore\n");
         printf("3. Mangalore\n");
         printf("Enter your choice: ");
-        scanf("%d", &destination);
+        if (scanf("%d", &destination) != 1) {
+            clearInputBuffer();
+            printf("Invalid input. Please enter a valid destination city number.\n");
+            return bookedSeats;
+        }
 
         // Calculate ticket price based on departure, destination, and bus type
         float totalPrice;
@@ -113,7 +137,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
 int cancelTickets(int bookedSeats) {
     int numTicketsToCancel;
     printf("Enter the number of tickets to cancel: ");
-    scanf("%d", &numTicketsToCancel);
+    if (scanf("%d", &numTicketsToCancel) != 1) {
+        clearInputBuffer();
+        printf("Invalid input. Please enter a valid number of tickets.\n");
+        return bookedSeats;
+    }
     if (bookedSeats >= numTicketsToCancel) {
         bookedSeats -= numTicketsToCancel;
         printf("Ticket(s) cancelled successfully!\n");
@@ -125,4 +153,9 @@ int cancelTickets(int bookedSeats) {
 
 void viewAvailableSeats(int bookedSeats, int totalSeats) {
     printf("Available seats: %d\n", totalSeats - bookedSeats);
+}
+
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
