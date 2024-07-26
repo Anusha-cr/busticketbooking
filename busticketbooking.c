@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 // Function prototypes
 int bookTickets(int bookedSeats, int totalSeats);
 int cancelTickets(int bookedSeats);
 void viewAvailableSeats(int bookedSeats, int totalSeats);
-void clearInputBuffer();
 
 int main() {
     // Variables to store the number of available seats and ticket price
@@ -27,11 +25,11 @@ int main() {
 
         // Variable to store user's choice
         int choice;
-        if (scanf("%d", &choice) != 1) {
-            // Clear the input buffer if invalid input is detected
-            clearInputBuffer();
+        while (scanf("%d", &choice) != 1) {
+            // Clear the input buffer
+            while (getchar() != '\n');
             printf("Invalid input. Please enter a number.\n");
-            continue;
+            printf("Enter your choice: ");
         }
 
         // Process user's choice
@@ -64,10 +62,11 @@ int main() {
 int bookTickets(int bookedSeats, int totalSeats) {
     int numTickets;
     printf("Enter the number of tickets to book: ");
-    if (scanf("%d", &numTickets) != 1) {
-        clearInputBuffer();
+    while (scanf("%d", &numTickets) != 1) {
+        // Clear the input buffer
+        while (getchar() != '\n');
         printf("Invalid input. Please enter a valid number of tickets.\n");
-        return bookedSeats;
+        printf("Enter the number of tickets to book: ");
     }
     if (bookedSeats + numTickets <= totalSeats) {
         // Choose a bus type
@@ -76,10 +75,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("1. Regular\n");
         printf("2. Deluxe\n");
         printf("Enter your choice: ");
-        if (scanf("%d", &busType) != 1) {
-            clearInputBuffer();
+        while (scanf("%d", &busType) != 1) {
+            // Clear the input buffer
+            while (getchar() != '\n');
             printf("Invalid input. Please enter 1 for Regular or 2 for Deluxe.\n");
-            return bookedSeats;
+            printf("Enter your choice: ");
         }
 
         // Choose the departure city
@@ -89,10 +89,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("2. Mysore\n");
         printf("3. Mangalore\n");
         printf("Enter your choice: ");
-        if (scanf("%d", &departure) != 1) {
-            clearInputBuffer();
+        while (scanf("%d", &departure) != 1) {
+            // Clear the input buffer
+            while (getchar() != '\n');
             printf("Invalid input. Please enter a valid departure city number.\n");
-            return bookedSeats;
+            printf("Enter your choice: ");
         }
 
         // Choose the destination city
@@ -102,10 +103,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
         printf("2. Mysore\n");
         printf("3. Mangalore\n");
         printf("Enter your choice: ");
-        if (scanf("%d", &destination) != 1) {
-            clearInputBuffer();
+        while (scanf("%d", &destination) != 1) {
+            // Clear the input buffer
+            while (getchar() != '\n');
             printf("Invalid input. Please enter a valid destination city number.\n");
-            return bookedSeats;
+            printf("Enter your choice: ");
         }
 
         // Calculate ticket price based on departure, destination, and bus type
@@ -137,10 +139,11 @@ int bookTickets(int bookedSeats, int totalSeats) {
 int cancelTickets(int bookedSeats) {
     int numTicketsToCancel;
     printf("Enter the number of tickets to cancel: ");
-    if (scanf("%d", &numTicketsToCancel) != 1) {
-        clearInputBuffer();
+    while (scanf("%d", &numTicketsToCancel) != 1) {
+        // Clear the input buffer
+        while (getchar() != '\n');
         printf("Invalid input. Please enter a valid number of tickets.\n");
-        return bookedSeats;
+        printf("Enter the number of tickets to cancel: ");
     }
     if (bookedSeats >= numTicketsToCancel) {
         bookedSeats -= numTicketsToCancel;
@@ -153,9 +156,4 @@ int cancelTickets(int bookedSeats) {
 
 void viewAvailableSeats(int bookedSeats, int totalSeats) {
     printf("Available seats: %d\n", totalSeats - bookedSeats);
-}
-
-void clearInputBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
 }
