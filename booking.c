@@ -1,3 +1,5 @@
+#include "busticket.h"
+
 int bookTickets(int bookedSeats, int totalSeats) {
     int numTickets;
     printf("Enter the number of tickets to book: ");
