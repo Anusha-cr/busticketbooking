@@ -30,7 +30,11 @@ int main() {
 
         // Variable to store user's choice
         int choice;
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n');  // Clear input buffer
+            continue;
+        }
 
         // Process user's choice
         switch (choice) {
@@ -52,6 +56,7 @@ int main() {
 
             default:
                 printf("Invalid choice. Please try again.\n");
+                while (getchar() != '\n');  // Clear input buffer
                 break;
         }
     }
