@@ -1,3 +1,5 @@
+#include "busticket.h"
+
 int cancelTickets(int bookedSeats) {
     int numTicketsToCancel;
     printf("Enter the number of tickets to cancel: ");
