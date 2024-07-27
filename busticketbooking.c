@@ -51,6 +51,7 @@ int main() {
 
             default:
                 printf("Invalid choice. Please try again.\n");
+                while (getchar() != '\n');  // Clear input buffer
                 break;
         }
     }
