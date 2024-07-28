@@ -8,5 +8,4 @@ void viewAvailableSeats(int seats[][NUM_CITIES-1]) {
     displayAvailableSeats(seats, 1, NUM_CITIES); // Display all available seats from start to end
 }
 
-}
 
