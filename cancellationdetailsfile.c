@@ -1,5 +1,8 @@
 #include "busticket.h"
 
+#define TOTAL_SEATS 50
+#define NUM_CITIES 5
+
 void writeCancellationDetailsToFile(int busType, int departure, int destination, int seatNumber) {
     FILE *fp;
     if (busType == 1) {
