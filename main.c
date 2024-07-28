@@ -10,10 +10,9 @@
 #include "cancellationdetailsfile.c"
 #include "cityname.c"
 
-
-// Constants
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
+
 int main() {
     // Arrays to store the availability of seats for Regular and Deluxe bus types
     int regularSeats[TOTAL_SEATS][NUM_CITIES-1];
