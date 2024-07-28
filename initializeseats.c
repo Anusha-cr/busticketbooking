@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "busticket.h"
 
 void initializeSeats(int seats[][NUM_CITIES-1]) {
     for (int i = 0; i < TOTAL_SEATS; i++) {
