@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include "busticket.h"
+#include "booking.c"
+#include "cancel.c"
+#include "availableseat.c"
 
 // Function prototypes
 int bookTickets(int bookedSeats, int totalSeats);
