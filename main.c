@@ -6,30 +6,14 @@
 #include "availableseat.c"
 #include "displayseats.c"
 #include "price.c"
+#include "bookingdeatilsfile.c"
+#include "cancellationdetailsfile.c"
+#include "cityname.c"
+
 
 // Constants
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
-
-// Function prototypes
-void initializeSeats(int seats[][NUM_CITIES-1]);
-<<<<<<< HEAD
-int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]);
-void cancelTickets(int seats[][NUM_CITIES-1]);
-void viewAvailableSeats(int seats[][NUM_CITIES-1]);
-void displayAvailableSeats(int seats[][NUM_CITIES-1], int departure, int destination);
-float calculatePrice(int departure, int destination, float priceMatrix[NUM_CITIES][NUM_CITIES]);
-=======
-int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType);
-void cancelTickets(int seats[][NUM_CITIES-1], int busType);
-void viewAvailableSeats(int seats[][NUM_CITIES-1]);
-void displayAvailableSeats(int seats[][NUM_CITIES-1], int departure, int destination);
-float calculatePrice(int departure, int destination, float priceMatrix[NUM_CITIES][NUM_CITIES]);
-void writeBookingDetailsToFile(int busType, int departure, int destination, int seatNumber, float price);
-void writeCancellationDetailsToFile(int busType, int departure, int destination, int seatNumber);
-const char* getCityName(int cityIndex);
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
-
 int main() {
     // Arrays to store the availability of seats for Regular and Deluxe bus types
     int regularSeats[TOTAL_SEATS][NUM_CITIES-1];
@@ -39,11 +23,7 @@ int main() {
     initializeSeats(regularSeats);
     initializeSeats(deluxeSeats);
 
-<<<<<<< HEAD
-    // Price matrices for Regular and Deluxe bus types
-=======
     // Price matrices for Regular and Deluxe bus types (in INR)
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
     float regularPriceMatrix[NUM_CITIES][NUM_CITIES] = {
         {0.0, 30.0, 60.0, 90.0, 120.0},
         {30.0, 0.0, 30.0, 60.0, 90.0},
@@ -59,10 +39,7 @@ int main() {
         {180.0, 120.0, 60.0, 0.0, 60.0},
         {240.0, 180.0, 120.0, 60.0, 0.0}
     };
-<<<<<<< HEAD
-=======
 
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
 
     // Display menu
     printf("Welcome to Bus Ticket Booking System\n");
@@ -99,15 +76,9 @@ int main() {
                     continue;
                 }
                 if (choice == 1) {
-<<<<<<< HEAD
-                    bookTickets(regularSeats, regularPriceMatrix);
-                } else {
-                    bookTickets(deluxeSeats, deluxePriceMatrix);
-=======
                     bookTickets(regularSeats, regularPriceMatrix, 1);
                 } else {
                     bookTickets(deluxeSeats, deluxePriceMatrix, 2);
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
                 }
                 break;
 
@@ -122,15 +93,9 @@ int main() {
                     continue;
                 }
                 if (choice == 1) {
-<<<<<<< HEAD
-                    cancelTickets(regularSeats);
-                } else {
-                    cancelTickets(deluxeSeats);
-=======
                     cancelTickets(regularSeats, 1);
                 } else {
                     cancelTickets(deluxeSeats, 2);
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
                 }
                 break;
 
