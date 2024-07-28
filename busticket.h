@@ -6,6 +6,7 @@
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
+// Function prototypes
 void initializeSeats(int seats[][NUM_CITIES-1]);
 int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType);
 void cancelTickets(int seats[][NUM_CITIES-1], int busType);
