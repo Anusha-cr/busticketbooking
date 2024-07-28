@@ -1,11 +1,8 @@
 #include "busticket.h"
-<<<<<<< HEAD
 
 // Constants
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
-=======
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
 
 // Constants
 #define TOTAL_SEATS 50
