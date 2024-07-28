@@ -1,5 +1,8 @@
 #include "busticket.h"
 
+#define TOTAL_SEATS 50
+#define NUM_CITIES 5
+
 const char* getCityName(int cityIndex) {
     switch (cityIndex) {
         case 1: return "Mysore";
