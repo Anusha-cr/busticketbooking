@@ -1,16 +1,12 @@
 #include <stdio.h>
 
-<<<<<<< HEAD
 // Constants
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
-
-=======
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
 // Function prototypes
 void initializeSeats(int seats[][NUM_CITIES-1]);
 int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType);
