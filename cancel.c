@@ -1,6 +1,5 @@
 #include "busticket.h"
 
-// Constants
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
