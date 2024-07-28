@@ -1,25 +1,40 @@
-#include<stdio.h>
-#include "busticket.h"
-#include "booking.c"
-#include "cancel.c"
-#include "availableseat.c"
-<<<<<<< HEAD
-=======
-
->>>>>>> c92d89148c49f5a844dcb7645325d3118df3a0d0
-
 // Function prototypes
-int bookTickets(int bookedSeats, int totalSeats);
-int cancelTickets(int bookedSeats);
-void viewAvailableSeats(int bookedSeats, int totalSeats);
+void initializeSeats(int seats[][NUM_CITIES-1]);
+int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]);
+void cancelTickets(int seats[][NUM_CITIES-1]);
+void viewAvailableSeats(int seats[][NUM_CITIES-1]);
+void displayAvailableSeats(int seats[][NUM_CITIES-1], int departure, int destination);
+float calculatePrice(int departure, int destination, float priceMatrix[NUM_CITIES][NUM_CITIES]);
 
 int main() {
-    // Variables to store the number of available seats and ticket price
-    int totalSeats = 50;
-    int bookedSeats = 0;
+    // Arrays to store the availability of seats for Regular and Deluxe bus types
+    int regularSeats[TOTAL_SEATS][NUM_CITIES-1];
+    int deluxeSeats[TOTAL_SEATS][NUM_CITIES-1];
+
+    // Initialize seats to available (1)
+    initializeSeats(regularSeats);
+    initializeSeats(deluxeSeats);
+
+    // Price matrices for Regular and Deluxe bus types
+    float regularPriceMatrix[NUM_CITIES][NUM_CITIES] = {
+        {0.0, 30.0, 60.0, 90.0, 120.0},
+        {30.0, 0.0, 30.0, 60.0, 90.0},
+        {60.0, 30.0, 0.0, 30.0, 60.0},
+        {90.0, 60.0, 30.0, 0.0, 30.0},
+        {120.0, 90.0, 60.0, 30.0, 0.0}
+    };
+
+    float deluxePriceMatrix[NUM_CITIES][NUM_CITIES] = {
+        {0.0, 60.0, 120.0, 180.0, 240.0},
+        {60.0, 0.0, 60.0, 120.0, 180.0},
+        {120.0, 60.0, 0.0, 60.0, 120.0},
+        {180.0, 120.0, 60.0, 0.0, 60.0},
+        {240.0, 180.0, 120.0, 60.0, 0.0}
+    };
 
     // Display menu
     printf("Welcome to Bus Ticket Booking System\n");
+    printf("Bus Route: Mysore -> Mandya -> Maddur -> Ramanagar -> Bangalore\n");
 
     // Loop to display menu until user exits
     while (1) {
@@ -42,15 +57,54 @@ int main() {
         // Process user's choice
         switch (choice) {
             case 1: // Book ticket(s)
-                bookedSeats = bookTickets(bookedSeats, totalSeats);
+                printf("Choose a bus type to book tickets:\n");
+                printf("1. Regular\n");
+                printf("2. Deluxe\n");
+                printf("Enter your choice: ");
+                if (scanf("%d", &choice) != 1 || (choice != 1 && choice != 2)) {
+                    printf("Invalid input. Please enter a valid bus type.\n");
+                    while (getchar() != '\n');  // Clear input buffer
+                    continue;
+                }
+                if (choice == 1) {
+                    bookTickets(regularSeats, regularPriceMatrix);
+                } else {
+                    bookTickets(deluxeSeats, deluxePriceMatrix);
+                }
                 break;
 
             case 2: // Cancel ticket(s)
-                bookedSeats = cancelTickets(bookedSeats);
+                printf("Choose a bus type to cancel tickets:\n");
+                printf("1. Regular\n");
+                printf("2. Deluxe\n");
+                printf("Enter your choice: ");
+                if (scanf("%d", &choice) != 1 || (choice != 1 && choice != 2)) {
+                    printf("Invalid input. Please enter a valid bus type.\n");
+                    while (getchar() != '\n');  // Clear input buffer
+                    continue;
+                }
+                if (choice == 1) {
+                    cancelTickets(regularSeats);
+                } else {
+                    cancelTickets(deluxeSeats);
+                }
                 break;
 
             case 3: // View available seats
-                viewAvailableSeats(bookedSeats, totalSeats);
+                printf("Choose a bus type to view available seats:\n");
+                printf("1. Regular\n");
+                printf("2. Deluxe\n");
+                printf("Enter your choice: ");
+                if (scanf("%d", &choice) != 1 || (choice != 1 && choice != 2)) {
+                    printf("Invalid input. Please enter a valid bus type.\n");
+                    while (getchar() != '\n');  // Clear input buffer
+                    continue;
+                }
+                if (choice == 1) {
+                    viewAvailableSeats(regularSeats);
+                } else {
+                    viewAvailableSeats(deluxeSeats);
+                }
                 break;
 
             case 4: // Exit
