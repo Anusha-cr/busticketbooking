@@ -13,11 +13,14 @@
 
 // Function prototypes
 void initializeSeats(int seats[][NUM_CITIES-1]);
-int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]);
-void cancelTickets(int seats[][NUM_CITIES-1]);
+int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType);
+void cancelTickets(int seats[][NUM_CITIES-1], int busType);
 void viewAvailableSeats(int seats[][NUM_CITIES-1]);
 void displayAvailableSeats(int seats[][NUM_CITIES-1], int departure, int destination);
 float calculatePrice(int departure, int destination, float priceMatrix[NUM_CITIES][NUM_CITIES]);
+void writeBookingDetailsToFile(int busType, int departure, int destination, int seatNumber, float price);
+void writeCancellationDetailsToFile(int busType, int departure, int destination, int seatNumber);
+const char* getCityName(int cityIndex);
 
 int main() {
     // Arrays to store the availability of seats for Regular and Deluxe bus types
@@ -28,7 +31,7 @@ int main() {
     initializeSeats(regularSeats);
     initializeSeats(deluxeSeats);
 
-    // Price matrices for Regular and Deluxe bus types
+    // Price matrices for Regular and Deluxe bus types (in INR)
     float regularPriceMatrix[NUM_CITIES][NUM_CITIES] = {
         {0.0, 30.0, 60.0, 90.0, 120.0},
         {30.0, 0.0, 30.0, 60.0, 90.0},
@@ -44,6 +47,7 @@ int main() {
         {180.0, 120.0, 60.0, 0.0, 60.0},
         {240.0, 180.0, 120.0, 60.0, 0.0}
     };
+
 
     // Display menu
     printf("Welcome to Bus Ticket Booking System\n");
@@ -80,9 +84,9 @@ int main() {
                     continue;
                 }
                 if (choice == 1) {
-                    bookTickets(regularSeats, regularPriceMatrix);
+                    bookTickets(regularSeats, regularPriceMatrix, 1);
                 } else {
-                    bookTickets(deluxeSeats, deluxePriceMatrix);
+                    bookTickets(deluxeSeats, deluxePriceMatrix, 2);
                 }
                 break;
 
@@ -97,9 +101,9 @@ int main() {
                     continue;
                 }
                 if (choice == 1) {
-                    cancelTickets(regularSeats);
+                    cancelTickets(regularSeats, 1);
                 } else {
-                    cancelTickets(deluxeSeats);
+                    cancelTickets(deluxeSeats, 2);
                 }
                 break;
 
