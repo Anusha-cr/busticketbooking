@@ -3,6 +3,10 @@
 #include "booking.c"
 #include "cancel.c"
 #include "availableseat.c"
+<<<<<<< HEAD
+=======
+
+>>>>>>> c92d89148c49f5a844dcb7645325d3118df3a0d0
 
 // Function prototypes
 int bookTickets(int bookedSeats, int totalSeats);
@@ -29,7 +33,11 @@ int main() {
 
         // Variable to store user's choice
         int choice;
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n');  // Clear input buffer
+            continue;
+        }
 
         // Process user's choice
         switch (choice) {
@@ -51,6 +59,7 @@ int main() {
 
             default:
                 printf("Invalid choice. Please try again.\n");
+                while (getchar() != '\n');  // Clear input buffer
                 break;
         }
     }
