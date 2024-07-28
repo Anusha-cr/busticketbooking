@@ -4,7 +4,7 @@
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
-int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]) {
+int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType) {
     int numTickets;
     printf("Enter the number of tickets to book: ");
     if (scanf("%d", &numTickets) != 1) {
@@ -75,12 +75,21 @@ int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CIT
             for (int segment = departure - 1; segment < destination - 1; segment++) {
                 seats[seatNumber - 1][segment] = 0;
             }
+
+            // Calculate and display ticket price
             float price = calculatePrice(departure, destination, priceMatrix);
-            printf("Seat %d booked successfully from city %d to city %d. Price: %.2f\n", seatNumber, departure, destination, price);
+            printf("Seat %d booked successfully from %s to %s. Ticket price: ₹%.2f\n", seatNumber,
+                   getCityName(departure), getCityName(destination), price);
+
+            // Write booking details to file
+            writeBookingDetailsToFile(busType, departure, destination, seatNumber, price);
+
             seatsBooked++;
         } else {
-            printf("Seat %d is not available for the entire journey from city %d to city %d.\n", seatNumber, departure, destination);
+            printf("Seat %d is not available for the entire journey from %s to %s.\n", seatNumber,
+                   getCityName(departure), getCityName(destination));
         }
     }
+
     return seatsBooked;
 }
