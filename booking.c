@@ -4,7 +4,6 @@
 #define NUM_CITIES 5
 
 
-int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]) {
 int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES], int busType) {
     int numTickets;
     printf("Enter the number of tickets to book: ");
@@ -76,15 +75,6 @@ int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CIT
             for (int segment = departure - 1; segment < destination - 1; segment++) {
                 seats[seatNumber - 1][segment] = 0;
             }
-
-            float price = calculatePrice(departure, destination, priceMatrix);
-            printf("Seat %d booked successfully from city %d to city %d. Price: %.2f\n", seatNumber, departure, destination, price);
-            seatsBooked++;
-        } else {
-            printf("Seat %d is not available for the entire journey from city %d to city %d.\n", seatNumber, departure, destination);
-        }
-    }
-
 
             // Calculate and display ticket price
             float price = calculatePrice(departure, destination, priceMatrix);
