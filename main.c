@@ -6,7 +6,7 @@
 #include "availableseat.c"
 #include "displayseats.c"
 #include "price.c"
-#include "bookingdeatilsfile.c"
+#include "bookingdetailsfile.c"
 #include "cancellationdetailsfile.c"
 #include "cityname.c"
 
