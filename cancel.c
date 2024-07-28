@@ -4,24 +4,20 @@
 #define TOTAL_SEATS 50
 #define NUM_CITIES 5
 
-<<<<<<< HEAD
 void cancelTickets(int seats[][NUM_CITIES-1]) {
     int numTicketsToCancel;
     printf("Enter the number of tickets to cancel: ");
     if (scanf("%d", &numTicketsToCancel) != 1) {
         printf("Invalid input. Please enter a number.\n");
-=======
 void cancelTickets(int seats[][NUM_CITIES-1], int busType) {
     int seatNumber;
     printf("Enter the seat number to cancel: ");
     if (scanf("%d", &seatNumber) != 1 || seatNumber < 1 || seatNumber > TOTAL_SEATS) {
         printf("Invalid input. Please enter a valid seat number.\n");
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
         while (getchar() != '\n');  // Clear input buffer
         return;
     }
 
-<<<<<<< HEAD
     for (int i = 0; i < numTicketsToCancel; i++) {
         int seatNumber;
         printf("Enter the seat number to cancel (1-%d): ", TOTAL_SEATS);
@@ -84,7 +80,6 @@ void cancelTickets(int seats[][NUM_CITIES-1], int busType) {
         } else {
             printf("Seat %d is not booked for the entire journey from city %d to city %d.\n", seatNumber, departure, destination);
         }
-=======
     // Check if the seat is booked
     int seatBooked = 0;
     for (int segment = 0; segment < NUM_CITIES-1; segment++) {
@@ -151,6 +146,5 @@ void cancelTickets(int seats[][NUM_CITIES-1], int busType) {
 
         // Write cancellation details to file
         writeCancellationDetailsToFile(busType, departure, destination, seatNumber);
->>>>>>> 0255ac236c84ea466b258d27fb1d448205820821
     }
 }
