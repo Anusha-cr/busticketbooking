@@ -1,3 +1,12 @@
+#include<stdio.h>
+#include "busticket.h"
+#include "initializeseats.c"
+#include "booking.c"
+#include "cancel.c"
+#include "availableseat.c"
+#include "displayseats.c"
+#include "price.c"
+
 // Function prototypes
 void initializeSeats(int seats[][NUM_CITIES-1]);
 int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CITIES]);
