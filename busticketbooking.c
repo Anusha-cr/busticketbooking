@@ -216,7 +216,7 @@ int bookTickets(int seats[][NUM_CITIES-1], float priceMatrix[NUM_CITIES][NUM_CIT
 
             // Calculate and display ticket price
             float price = calculatePrice(departure, destination, priceMatrix);
-            printf("Seat %d booked successfully from %s to %s. Ticket price: ₹%.2f\n", seatNumber,
+            printf("Seat %d booked successfully from %s to %s. Ticket price: rs%.2f\n", seatNumber,
                    getCityName(departure), getCityName(destination), price);
 
             // Write booking details to file
